@@ -1,10 +1,11 @@
 # Search-Results-Sample-Java-Script
-Search G2 sample results page developed in Knockout JS (Java Script)
+Search G2 sample results pages examples developed in Knockout JS (Java Script) & ASP.NET (MVC & WebForms)
 
-For the details of this code sample go to: stagedeveloper.crownpeak.com/Documentation/SearchG2API/index.html
+For more details about this code sample, please visit: developer.crownpeak.com/Documentation/SearchG2API/index.html
 
 
-/*! // ------------------------------------------------------------------------ // (C) CROWNPEAK TECHNOLOGY. // ------------------------------------------------------------------------
+/*! 
+// ----------------------------------------- // (C) CROWNPEAK TECHNOLOGY. // ------------------------------------------------------------------------
 
 // THIS SOFTWARE IS PROVIDED "AS-IS," WITHOUT ANY EXPRESS OR IMPLIED WARRANTY.
 
