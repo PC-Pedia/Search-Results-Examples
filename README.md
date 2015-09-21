@@ -5,7 +5,7 @@ For more details about this code sample, please visit: developer.crownpeak.com/D
 
 
 /*! 
-// ----------------------------------------- // (C) CROWNPEAK TECHNOLOGY. // ------------------------------------------------------------------------
+// ---------------------- // (C) CROWNPEAK TECHNOLOGY. // -------------------------------------------------------------
 
 // THIS SOFTWARE IS PROVIDED "AS-IS," WITHOUT ANY EXPRESS OR IMPLIED WARRANTY.
 
