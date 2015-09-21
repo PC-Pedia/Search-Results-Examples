@@ -1,0 +1,22 @@
+﻿@using CrownPeak.SearchG2.Client.Models
+@model IEnumerable<int>
+
+@if (Model != null)
+{
+	foreach (int p in Model)
+	{
+		if (p > 1)
+		{
+@Html.Raw(" | ")
+		}
+		if (p == ViewBag.Page)
+		{
+@Html.Raw(p)
+		}
+		else
+		{
+@Html.ActionLink(p.ToString(), "Search", new Query { QueryText = ViewBag.Query, Page = p, LoggingId = ViewBag.LoggingId }, new { @class = "page" })
+		}
+	}
+}
+

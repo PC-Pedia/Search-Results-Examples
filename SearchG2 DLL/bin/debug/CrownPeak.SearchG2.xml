@@ -1,0 +1,1550 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CrownPeak.SearchG2</name>
+    </assembly>
+    <members>
+        <member name="T:CrownPeak.SearchG2.Attributes.FieldAttribute">
+            <summary>
+            Marks a property as present on the index. By default the field name is the property name
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Attributes.FieldAttribute.#ctor">
+            <summary>
+            Marks a property as present on the index. By default the field name is the property name
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Attributes.FieldAttribute.#ctor(System.String)">
+            <summary>
+            Marks a property as present on the index with the defined field name
+            </summary>
+            <param name="fieldName">The field name to use for this property.</param>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Attributes.FieldAttribute.FieldName">
+            <summary>
+            Overrides index field name
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Attributes.FieldAttribute.Boost">
+            <summary>
+            Adds an index time boost to a field.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Attributes.UniqueKeyAttribute">
+            <summary>
+            Marks a property as unique key. By default the field name is the property name.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Attributes.UniqueKeyAttribute.#ctor">
+            <summary>
+            Marks a property as unique key. By default the field name is the property name.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Attributes.UniqueKeyAttribute.#ctor(System.String)">
+            <summary>
+            Marks a property as unique key.
+            </summary>
+            <param name="fieldName">The field name to use for this property.</param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Common.IEndPointConfiguration">
+            <summary>
+            IEndPointConfiguration is the interface that is required for a
+            connection to a SearchG2 end point.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.IEndPointConfiguration.Url">
+            <summary>
+            The url of the end point.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.IEndPointConfiguration.Timeout">
+            <summary>
+            The timeout to be used for this end point.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.IEndPointConfiguration.Certificate">
+            <summary>
+            The certificate to be sent for requests to this end point.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Common.EndPointConfiguration">
+            <summary>
+            Default implementation of <see cref="T:CrownPeak.SearchG2.Common.IEndPointConfiguration"/>, connecting to
+            http://searchg2.crownpeak.net/.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.EndPointConfiguration.Url">
+            <summary>
+            Get the EndPoint url.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.EndPointConfiguration.Timeout">
+            <summary>
+            Get the timeout to be used for this EndPoint
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.EndPointConfiguration.Certificate">
+            <summary>
+            Get the certificate to be sent for requests to this EndPoint.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Exceptions.SearchG2QueryException">
+            <summary>
+            Represents errors that occur during SearchG2 queries.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Exceptions.SearchG2Exception">
+            <summary>
+            Represents errors that occur during SearchG2 operation.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2Exception.#ctor">
+            <summary>
+            Initializes a new instance of the SearchG2Exception class.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2Exception.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SearchG2Exception class with a 
+            specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2Exception.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the SearchG2Exception class with a 
+            specified error message and a reference to the inner exception 
+            that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, 
+            or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2QueryException.#ctor">
+            <summary>
+            Initializes a new instance of the SearchG2QueryException class.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2QueryException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SearchG2QueryException class with a 
+            specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2QueryException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the SearchG2QueryException class with a 
+            specified error message and a reference to the inner exception 
+            that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, 
+            or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Exceptions.SearchG2ConnectionException">
+            <summary>
+            Represents errors that occur during SearchG2 connections.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2ConnectionException.#ctor">
+            <summary>
+            Initializes a new instance of the SearchG2ConnectionException class.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2ConnectionException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SearchG2ConnectionException class with a 
+            specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2ConnectionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the SearchG2ConnectionException class with a 
+            specified error message and a reference to the inner exception 
+            that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, 
+            or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Exceptions.SearchG2TimeoutException">
+            <summary>
+            Represents errors that occur during SearchG2 connections.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2TimeoutException.#ctor">
+            <summary>
+            Initializes a new instance of the SearchG2TimeoutException class.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2TimeoutException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SearchG2TimeoutException class with a 
+            specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Exceptions.SearchG2TimeoutException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the SearchG2TimeoutException class with a 
+            specified error message and a reference to the inner exception 
+            that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, 
+            or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.PlainSearch">
+            <summary>
+            <para>Class to support a search on the CrownPeak SearchG2 infrastructure, 
+            using a <see cref="T:System.Collections.Generic.Dictionary`2"/> to contain each result.</para>
+            <seealso cref="T:CrownPeak.SearchG2.Search`1"/>
+            </summary>
+        </member>
+        <member name="F:CrownPeak.SearchG2.PlainSearch._settings">
+            <summary>Settings that were provided to the <see cref="M:CrownPeak.SearchG2.PlainSearch.#ctor(CrownPeak.SearchG2.Common.Settings)"/>.</summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.PlainSearch.#ctor(CrownPeak.SearchG2.Common.Settings)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.PlainSearch"/> object with the specified settings
+            </summary>
+            <param name="settings">The <see cref="T:CrownPeak.SearchG2.Common.Settings"/> to be used</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.PlainSearch.Execute">
+            <summary>
+            Execute a search that returns all of the results in the specified collection.
+            </summary>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.PlainResultCollection"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.PlainSearch.Execute(System.String)">
+            <summary>
+            Execute a search that returns the results that match the specified query text,
+            using a default set of query options.
+            </summary>
+            <param name="q">The query string to execute. See 
+            <see href="https://wiki.apache.org/solr/SolrQuerySyntax"/>.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.PlainResultCollection"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.PlainSearch.Execute(System.String,CrownPeak.SearchG2.Query.QueryOptions)">
+            <summary>
+            Execute a search that returns the results that match the specified query text,
+            using a specified set of <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/>.
+            </summary>
+            <param name="q">The query string to execute. See 
+            <see href="https://wiki.apache.org/solr/SolrQuerySyntax"/>.</param>
+            <param name="options">The <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/> to use for this query.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.PlainResultCollection"/></returns>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.CrownPeakBasicServer`1">
+            <summary>
+            Implements the basic Solr operations
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.ICrownPeakBasicOperations`1">
+            <summary>
+            Solr operations without convenience overloads
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakBasicOperations`1.Query(SolrNet.ISolrQuery,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakBasicServer`1.Query(SolrNet.ISolrQuery,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Execute the query and return the results
+            </summary>
+            <param name="query"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakBasicServer`1.#ctor(SolrNet.ISolrConnection,CrownPeak.SearchG2.Query.ICrownPeakQueryExecuter{`0},SolrNet.ISolrDocumentSerializer{`0},SolrNet.Schema.ISolrSchemaParser,SolrNet.Impl.ISolrHeaderResponseParser,SolrNet.Impl.ISolrQuerySerializer,SolrNet.Impl.ISolrDIHStatusParser,SolrNet.Impl.ISolrExtractResponseParser)">
+            <summary>
+            Make a new CrownPeakBasicServer instance
+            </summary>
+            <param name="connection"></param>
+            <param name="queryExecuter"></param>
+            <param name="documentSerializer"></param>
+            <param name="schemaParser"></param>
+            <param name="headerParser"></param>
+            <param name="querySerializer"></param>
+            <param name="dihStatusParser"></param>
+            <param name="extractResponseParser"></param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.CrownPeakQueryExecuter`1">
+            <summary>
+            Executes queries
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.ICrownPeakQueryExecuter`1">
+            <summary>
+            Executable query
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakQueryExecuter`1.Execute(SolrNet.ISolrQuery,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Executes the query and returns results
+            </summary>
+            <returns>query results</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakQueryExecuter`1.#ctor(SolrNet.Impl.ISolrAbstractResponseParser{`0},SolrNet.ISolrConnection,SolrNet.Impl.ISolrQuerySerializer,SolrNet.Impl.ISolrFacetQuerySerializer,SolrNet.Impl.ISolrMoreLikeThisHandlerQueryResultsParser{`0})">
+            <summary>
+            Make a new CrownPeakQueryExecuter
+            </summary>
+            <param name="resultParser"></param>
+            <param name="connection"></param>
+            <param name="querySerializer"></param>
+            <param name="facetQuerySerializer"></param>
+            <param name="mlthResultParser"></param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakQueryExecuter`1.Execute(SolrNet.ISolrQuery,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Executes the query and returns results
+            </summary>
+            <returns>query results</returns>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.CrownPeakResponseParser`1">
+            <summary>
+            Parses a chunk of a query response
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.ICrownPeakResponseParser`1">
+            <summary>
+            Parses a chunk of a query response
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakResponseParser`1.Parse(System.Xml.Linq.XDocument,CrownPeak.SearchG2.Result.CrownPeakQueryResults{`0})">
+            <summary>
+            Parses a chunk of a query response into the results object
+            </summary>
+            <param name="xml">query response</param>
+            <param name="results">results object</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakResponseParser`1.Parse(System.Xml.Linq.XDocument,SolrNet.SolrQueryResults{`0})">
+            <summary>
+            Parses a chunk of a query response into the results object
+            </summary>
+            <param name="xml">query response</param>
+            <param name="results">results object</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakResponseParser`1.Parse(System.Xml.Linq.XDocument,SolrNet.Impl.AbstractSolrQueryResults{`0})">
+            <summary>
+            Parses a chunk of a query response into the results object
+            </summary>
+            <param name="xml">query response</param>
+            <param name="results">results object</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakResponseParser`1.Parse(System.Xml.Linq.XDocument,CrownPeak.SearchG2.Result.CrownPeakQueryResults{`0})">
+            <summary>
+            Parses a chunk of a query response into the results object
+            </summary>
+            <param name="xml">query response</param>
+            <param name="results">results object</param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.CrownPeakServer`1">
+            <summary>
+            Main component to interact with CrownPeak Search G2
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.ICrownPeakOperations`1">
+            <summary>
+            Consolidating interface, exposes all operations
+            </summary>
+            <typeparam name="T">Document type</typeparam>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakOperations`1.Query(System.String)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="q">query to execute</param>
+            <returns>query results</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakOperations`1.Query(System.String,System.Collections.Generic.ICollection{SolrNet.SortOrder})">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="q"></param>
+            <param name="orders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakOperations`1.Query(System.String,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="q"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakOperations`1.Query(SolrNet.ISolrQuery)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.ICrownPeakOperations`1.Query(SolrNet.ISolrQuery,System.Collections.Generic.ICollection{SolrNet.SortOrder})">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <param name="orders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.Query(System.String)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.Query(System.String,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.Query(SolrNet.ISolrQuery)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.Query(System.String,System.Collections.Generic.ICollection{SolrNet.SortOrder})">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="q"></param>
+            <param name="orders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.Query(SolrNet.ISolrQuery,System.Collections.Generic.ICollection{SolrNet.SortOrder})">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <param name="orders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.Query(SolrNet.ISolrQuery,SolrNet.Commands.Parameters.QueryOptions)">
+            <summary>
+            Executes a query
+            </summary>
+            <param name="query"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.CrownPeakServer`1.#ctor(CrownPeak.SearchG2.Query.ICrownPeakBasicOperations{`0},SolrNet.IReadOnlyMappingManager,SolrNet.Mapping.Validation.IMappingValidator)">
+            <summary>
+            Make a new CrownPeakServer instance
+            </summary>
+            <param name="basicServer"></param>
+            <param name="mappingManager"></param>
+            <param name="_schemaMappingValidator"></param>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.DefaultQueryOptions">
+            <summary>
+            Default query options to use when querying CrownPeak SearchG2.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.DefaultQueryOptions.BasicOptions">
+            <summary>
+            Basic options that will be applied when running a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            or a <see cref="T:CrownPeak.SearchG2.PlainSearch"/> if no other options are supplied.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.DefaultQueryOptions.FacetParameters">
+            <summary>
+            Facet parameters that will be applied when running a 
+            <see cref="T:CrownPeak.SearchG2.Search`1"/>or a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> if faceting is enabled but 
+            no other options are supplied.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.DefaultQueryOptions.HighlightingParameters">
+            <summary>
+            Highlighting parameters that will be applied when running a 
+            <see cref="T:CrownPeak.SearchG2.Search`1"/>or a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> if highlighting is enabled but 
+            no other options are supplied.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.DefaultQueryOptions.HighlightingExtraParameters">
+            <summary>
+            Extra parameters that will be applied when running a 
+            <see cref="T:CrownPeak.SearchG2.Search`1"/>or a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> if highlighting is enabled.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.DefaultQueryOptions.SpellCheckingParameters">
+            <summary>
+            SpellChecking parameters that will be applied when running a 
+            <see cref="T:CrownPeak.SearchG2.Search`1"/>or a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> if spellchecking is enabled but 
+            no other options are supplied.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.DefaultQueryOptions.SpellCheckingExtraParameters">
+            <summary>
+            Extra parameters that will be applied when running a 
+            <see cref="T:CrownPeak.SearchG2.Search`1"/>or a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> if spellchecking is enabled.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.FilterQuery">
+            <summary>
+            Class that wraps a single filter query operation when executing a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQuery.#ctor">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> object with an empty 
+            <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> and <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Value"/>.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQuery.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> object with provided
+            <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> and <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Value"/>.
+            </summary>
+            <param name="field">The <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> that this <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> applies to.</param>
+            <param name="value">The <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Value"/> that the <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> must match.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQuery.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> object with a string containing both the 
+            <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> and the <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Value"/>.
+            </summary>
+            <param name="filterQuery"><see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> and <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Value"/> in the format
+            field:value.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQuery.ToString">
+            <summary>
+            Return a string that represents the current <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/>.
+            </summary>
+            <returns><see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> and <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Value"/> in the format field:value.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQuery.Equals(System.Object)">
+            <summary>
+            Determines whether two specified <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> objects have the same value.
+            </summary>
+            <param name="obj">The object to compare to this instance</param>
+            <returns>True if the two objects match, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQuery.GetHashCode">
+            <summary>
+            Returns this hash code for this instance.
+            </summary>
+            <returns>The hash code for this instance.</returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.FilterQuery.Field">
+            <summary>The field that this <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> applies to.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.FilterQuery.Value">
+            <summary>The value that this <see cref="P:CrownPeak.SearchG2.Query.FilterQuery.Field"/> must match.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.FilterQueryCollection">
+            <summary>
+            Class that wraps a set of <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> objects to be used when executing a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.#ctor">
+            <summary>
+            Create a new, empty <see cref="T:CrownPeak.SearchG2.Query.FilterQueryCollection"/> object.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.#ctor(System.Collections.Generic.IEnumerable{CrownPeak.SearchG2.Query.FilterQuery})">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.FilterQueryCollection"/> object from an
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <param name="filterQueries"><see cref="T:System.Collections.Generic.IEnumerable`1"/> containing
+            the filter queries to be applied.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.FilterQueryCollection"/> object from a string
+            containing zero or more <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> in the format
+            field:value[;field:value...].
+            </summary>
+            <param name="filterQueries"><see cref="T:System.String"/> containing the filter queries 
+            to be applied, in the format field:value[;field:value...].</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.ToString">
+            <summary>
+            Return a string that represents the current <see cref="T:CrownPeak.SearchG2.Query.FilterQueryCollection"/>.
+            </summary>
+            <returns><see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> in the format field:value[;field:value...].</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.IEnumerator"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.Add(CrownPeak.SearchG2.Query.FilterQuery)">
+            <summary>
+            Add a <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> to the collection.
+            </summary>
+            <param name="item"><see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> to be added.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.Clear">
+            <summary>
+            Remove all <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> objects from the collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.Contains(CrownPeak.SearchG2.Query.FilterQuery)">
+            <summary>
+            Test if the collection contains a specific <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> object.
+            </summary>
+            <param name="item"><see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> to be checked.</param>
+            <returns>True if it is contained in the collection, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.CopyTo(CrownPeak.SearchG2.Query.FilterQuery[],System.Int32)">
+            <summary>
+            Copies the entire set of <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> to a one-dimensional array,
+            starting at the specified index.
+            </summary>
+            <param name="array">The array to copy to</param>
+            <param name="arrayIndex">The array index to begin copying to.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.FilterQueryCollection.Remove(CrownPeak.SearchG2.Query.FilterQuery)">
+            <summary>
+            Remove the specified <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> from the collection.
+            </summary>
+            <param name="item"><see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> to be removed.</param>
+            <returns>True if the item is successfully removed, or false if not.</returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.FilterQueryCollection.Item(System.Int32)">
+            <summary>
+            Get the numbered <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> from this collection.
+            </summary>
+            <param name="index">The index to retrieve.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.FilterQueryCollection.Count">
+            <summary>
+            Get the count of <see cref="T:CrownPeak.SearchG2.Query.FilterQuery"/> contained in this collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.FilterQueryCollection.IsReadOnly">
+            <summary>
+            Whether this collection is read only or not
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.QueryOptions">
+            <summary>
+            Class that wraps a set of query options to be used when executing a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.QueryOptions.#ctor">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/> with a default set of options.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.Rows">
+            <summary>The number of rows to return in a page of results. Defaults to 10.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.Start">
+            <summary>The index of the first row to return. Defaults to 0.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.Highlighting">
+            <summary>Whether to enable result hit highlighting. Defaults to false.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.SpellCheck">
+            <summary>Whether to enable spellchecking. Defaults to false.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.Language">
+            <summary>A language filter query to be applied to the query. Defaults to empty string (no filter).</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.FacetFields">
+            <summary>A set of fields on which to facet. Defaults to null (no faceting).</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.FilterQueries">
+            <summary><see cref="T:CrownPeak.SearchG2.Query.FilterQueryCollection"/> to apply. Defaults to null (no filter).</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.OrderBy">
+            <summary>A set of <see cref="T:CrownPeak.SearchG2.Query.SortOrder"/> sort orders to apply. Defaults to Score DESC.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.Timeout">
+            <summary>The timeout (in milliseconds) to allow for this query to execute. Defaults to 5000 (5 seconds).</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.LoggingEnabled">
+            <summary>Whether to enable CrownPeak Search G2 Logging. Defaults to true.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.LoggingId">
+            <summary>The unique id to use this for this query. Defaults to empty string, so a new value will be created automatically.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.IpLoggingEnabled">
+            <summary>Whether to enable CrownPeak Search G2 Logging of IP address. Defaults to true.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.ExtraParameters">
+            <summary>
+            A collection of <see cref="T:System.Collections.Generic.KeyValuePair`2"/> to apply in addition
+            to the options specified above.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.QueryOptions.SolrOptions">
+            <summary>
+            Convert the current <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/> into a format for Solr queries.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Common.Settings">
+            <summary>
+            Wrap the required settings for operations to be executed on CrownPeak SearchG2.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Common.Settings.#ctor(System.String)">
+            <summary>Initialize a <see cref="T:CrownPeak.SearchG2.Common.Settings"/> object for a collection.</summary>
+            <param name="collection">The collection name.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Common.Settings.#ctor(System.String,System.String)">
+            <summary>Initialize a <see cref="T:CrownPeak.SearchG2.Common.Settings"/> object for a collection.</summary>
+            <param name="collection">The collection name.</param>
+            <param name="endpoint">The endpoint.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Common.Settings.#ctor(System.String,System.String,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>Initialize a <see cref="T:CrownPeak.SearchG2.Common.Settings"/> object for a collection.</summary>
+            <param name="collection">The collection name.</param>
+            <param name="endpoint">The endpoint.</param>
+            <param name="certificate">The certificate to be sent with requests.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Common.Settings.#ctor(System.String,System.String,System.Int32)">
+            <summary>Initialize a <see cref="T:CrownPeak.SearchG2.Common.Settings"/> object for a collection.</summary>
+            <param name="collection">The collection name.</param>
+            <param name="endpoint">The endpoint.</param>
+            <param name="timeout">The connection and query timeout, in milliseconds.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Common.Settings.#ctor(System.String,System.String,System.Int32,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>Initialize a <see cref="T:CrownPeak.SearchG2.Common.Settings"/> object for a collection.</summary>
+            <param name="collection">The collection name.</param>
+            <param name="endpoint">The endpoint.</param>
+            <param name="timeout">The connection and query timeout, in milliseconds.</param>
+            <param name="certificate">The certificate to be sent with requests.</param>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.Settings.Endpoint">
+            <summary>
+            The endpoint to connect to.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.Settings.Timeout">
+            <summary>
+            The timeout for connection and query operations in milliseconds.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.Settings.Collection">
+            <summary>
+            The name of the collection to be operated on.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Common.Settings.Certificate">
+            <summary>
+            The certificate to be sent with requests.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.SortOrder">
+            <summary>
+            Class that wraps a single sort order request when executing a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.SortOrder.#ctor">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.SortOrder"/> object with an empty 
+            <see cref="P:CrownPeak.SearchG2.Query.SortOrder.Field"/> and <see cref="P:CrownPeak.SearchG2.Query.SortOrder.Direction"/> = Ascending.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.SortOrder.#ctor(System.String,CrownPeak.SearchG2.Query.SortDirection)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Query.SortOrder"/> object with provided
+            <see cref="P:CrownPeak.SearchG2.Query.SortOrder.Field"/> and <see cref="P:CrownPeak.SearchG2.Query.SortOrder.Direction"/>.
+            </summary>
+            <param name="field">The <see cref="P:CrownPeak.SearchG2.Query.SortOrder.Field"/> field to sort by.</param>
+            <param name="direction">The <see cref="T:CrownPeak.SearchG2.Query.SortDirection"/> to sort in.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Query.SortOrder.ToSolrSortOrder">
+            <summary>
+            Convert the current <see cref="T:SolrNet.SortOrder"/> into a format for Solr queries.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.SortOrder.Field">
+            <summary>The field to sort by.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Query.SortOrder.Direction">
+            <summary>The <see cref="T:CrownPeak.SearchG2.Query.SortDirection"/> for this <see cref="T:CrownPeak.SearchG2.Query.SortOrder"/>.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Query.SortDirection">
+            <summary>Available directions for a <see cref="T:CrownPeak.SearchG2.Query.SortOrder"/> parameter.</summary>
+        </member>
+        <member name="F:CrownPeak.SearchG2.Query.SortDirection.Asc">
+            <summary>Sort the field in ascending order.</summary>
+        </member>
+        <member name="F:CrownPeak.SearchG2.Query.SortDirection.Desc">
+            <summary>Sort the field in descending order.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.CrownPeakLoggingResults">
+            <summary>
+            Class to wrap logging results that are specific to CrownPeak
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.CrownPeakLoggingResults.Id">
+            <summary>
+            The unique id associated with this logging operation
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.CrownPeakQueryResults`1">
+            <summary>
+            Query results returned from a search using CrownPeak SearchG2
+            </summary>
+            <typeparam name="T">The type of document to retrieve</typeparam>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.CrownPeakQueryResults`1.CrownPeak">
+            <summary>
+            Results that are specific to CrownPeak search
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.CrownPeakResults">
+            <summary>
+            Class to wrap results that are specific to CrownPeak
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.CrownPeakResults.Logging">
+            <summary>
+            CrownPeak Logging results
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.Facet">
+            <summary>
+            Class that wraps a single facet result from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Facet.GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Facet.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.IEnumerator"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Facet.Key">
+            <summary>The key (field name) of this <see cref="T:CrownPeak.SearchG2.Result.Facet"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Facet.Values">
+            <summary><see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the values for this <see cref="T:CrownPeak.SearchG2.Result.Facet"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Facet.Item(System.Int32)">
+            <summary>
+            Get the numbered <see cref="T:CrownPeak.SearchG2.Result.FacetEntry"/> from this collection.
+            </summary>
+            <param name="index">The index to retrieve.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.FacetEntry"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Facet.Count">
+            <summary>
+            Get the count of <see cref="T:CrownPeak.SearchG2.Result.FacetEntry"/> contained in this collection.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.FacetCollection">
+            <summary>
+            Class that wraps a collection of <see cref="T:CrownPeak.SearchG2.Result.Facet"/> results from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.FacetCollection.GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.FacetCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.IEnumerator"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.FacetCollection.ContainsKey(System.String)">
+            <summary>
+            Test if the collection contains a specific key.
+            </summary>
+            <param name="key">The key to be checked.</param>
+            <returns>True if it the key is contained in the collection, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.FacetCollection.TryGetValue(System.String,CrownPeak.SearchG2.Result.Facet@)">
+            <summary>
+            Try to retrieve the value from the collection the corresponds to this key.
+            </summary>
+            <param name="key">The key to be checked.</param>
+            <param name="value">The value retrieved from the collection.</param>
+            <returns>True if the key was found in the collection, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.FacetCollection.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#String@CrownPeak#SearchG2#Result#Facet}}#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetCollection.Item(System.Int32)">
+            <summary>
+            Get the numbered <see cref="T:CrownPeak.SearchG2.Result.Facet"/> from this collection.
+            </summary>
+            <param name="index">The index to retrieve.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.Facet"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetCollection.Count">
+            <summary>
+            Get the count of <see cref="T:CrownPeak.SearchG2.Result.Facet"/> contained in this collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetCollection.Keys">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of the Keys in this collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetCollection.Values">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of the <see cref="T:CrownPeak.SearchG2.Result.Facet"/> objects in this collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetCollection.Item(System.String)">
+            <summary>
+            Get the named <see cref="T:CrownPeak.SearchG2.Result.Facet"/> from this collection.
+            </summary>
+            <param name="key">The key to retrieve.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.Facet"/></returns>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.FacetEntry">
+            <summary>
+            Class that wraps a single facet result entry from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetEntry.Key">
+            <summary>The key (field name) of this <see cref="T:CrownPeak.SearchG2.Result.FacetEntry"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetEntry.Value">
+            <summary>The value of this <see cref="T:CrownPeak.SearchG2.Result.FacetEntry"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.FacetEntry.Count">
+            <summary>The count of instances of this <see cref="T:CrownPeak.SearchG2.Result.FacetEntry"/>.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.Field">
+            <summary>
+            Class that wraps a single facet result from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.IField">
+            <summary>
+            Interface to describe a single result Field from a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/>.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.IField.GetAsType(System.Type)">
+            <summary>Convert the value into a specified <see cref="T:System.Type"/>.</summary>
+            <param name="type">The <see cref="T:System.Type"/> to be returned.</param>
+            <returns><see cref="T:System.Type"/> requested.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.IField.GetAsType(System.Int32,System.Type)">
+            <summary>Convert the nth value of this multi-valued <see cref="T:CrownPeak.SearchG2.Result.Field"/> into a specified <see cref="T:System.Type"/>.</summary>
+            <param name="index">The index of the value to return.</param>
+            <param name="type">The <see cref="T:System.Type"/> to be returned.</param>
+            <returns><see cref="T:System.Type"/> requested.</returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IField.Name">
+            <summary>The name of this <see cref="T:CrownPeak.SearchG2.Result.Field"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IField.Values">
+            <summary>Array of values for this <see cref="T:CrownPeak.SearchG2.Result.Field"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IField.Value">
+            <summary>Value for this <see cref="T:CrownPeak.SearchG2.Result.Field"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IField.Count">
+            <summary>Count of the number of values currently held in this <see cref="T:CrownPeak.SearchG2.Result.Field"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IField.Highlights">
+            <summary>Collection of highlights currently held in this <see cref="T:CrownPeak.SearchG2.Result.Field"/>.</summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.IEnumerator"/> for this collection.
+            </summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsType(System.Type)">
+            <summary>
+            Convert the value of this field into the specified <see cref="T:System.Type"/>.
+            </summary>
+            <param name="type">The desired result <see cref="T:System.Type"/>.</param>
+            <returns><see cref="T:System.Object"/> which can be cast to the desired type.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsType(System.Int32,System.Type)">
+            <summary>
+            Convert the nth value of this multi-valued field into the specified <see cref="T:System.Type"/>.
+            </summary>
+            <param name="index">The index of the value to retrieve.</param>
+            <param name="type">The desired result <see cref="T:System.Type"/>.</param>
+            <returns><see cref="T:System.Object"/> which can be cast to the desired type.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.ToString">
+            <summary>
+            Return a string that represents the current <see cref="T:CrownPeak.SearchG2.Result.Field"/>.
+            </summary>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsByteArray">
+            <summary>
+            Convert the value of this field into a <see cref="T:System.Byte"/> array.
+            </summary>
+            <returns>Array of <see cref="T:System.Byte"/>.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsByteArray(System.Int32)">
+            <summary>
+            Convert the nth value of this multi-valued field into a <see cref="T:System.Byte"/> array.
+            </summary>
+            <param name="index">The index of the value to retrieve.</param>
+            <returns>Array of <see cref="T:System.Byte"/>.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsDouble">
+            <summary>
+            Convert the value of this field into a <see cref="T:System.Double"/>.
+            </summary>
+            <returns><see cref="T:System.Double"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsDouble(System.Int32)">
+            <summary>
+            Convert the nth value of this multi-valued field into a <see cref="T:System.Double"/>.
+            </summary>
+            <param name="index">The index of the value to retrieve.</param>
+            <returns><see cref="T:System.Double"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsInt32">
+            <summary>
+            Convert the value of this field into an <see cref="T:System.Int32"/>.
+            </summary>
+            <returns><see cref="T:System.Int32"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsInt32(System.Int32)">
+            <summary>
+            Convert the nth value of this multi-valued field into an <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="index">The index of the value to retrieve.</param>
+            <returns><see cref="T:System.Int32"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsObject">
+            <summary>
+            Convert the value of this field into an <see cref="T:System.Object"/>.
+            </summary>
+            <returns><see cref="T:System.Object"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsObject(System.Int32)">
+            <summary>
+            Convert the nth value of this multi-valued field into an <see cref="T:System.Object"/>.
+            </summary>
+            <param name="index">The index of the value to retrieve.</param>
+            <returns><see cref="T:System.Object"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsString">
+            <summary>
+            Convert the value of this field into a <see cref="T:System.String"/>.
+            </summary>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Field.GetAsString(System.Int32)">
+            <summary>
+            Convert the nth value of this multi-valued field into a <see cref="T:System.String"/>.
+            </summary>
+            <param name="index">The index of the value to retrieve.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Field.Name">
+            <summary>The name of this field.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Field.Values">
+            <summary>The value(s) for this field.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Field.Value">
+            <summary>The value (may be concatenated for multi-valued fields) of this field.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Field.Count">
+            <summary>The number of values that this field contains.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Field.Highlights">
+            <summary>The highlights for this field.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Field.Item(System.Int32)">
+            <summary>
+            Get the numbered value from this collection.
+            </summary>
+            <param name="index">The index to retrieve.</param>
+            <returns>Object containing the value.</returns>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.FieldCollection">
+            <summary>
+            Class that wraps a collection of <see cref="T:CrownPeak.SearchG2.Result.Facet"/> results from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.SearchCollection`1">
+            <summary>Base class for collections of fields relating to search results</summary>
+            <typeparam name="T">Type of field used as the value for the collection</typeparam>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.SearchCollection`1.SetDictionary(System.Collections.Generic.Dictionary{System.String,`0})">
+            <summary>Allow derived classes to set the backing collection.</summary>
+            <param name="dictionary">The dictionary to use as the backing collection.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.SearchCollection`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <summary>Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for this collection.</summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.SearchCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>Get an <see cref="T:System.Collections.IEnumerator"/> for this collection.</summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.SearchCollection`1.ContainsKey(System.String)">
+            <summary>Test if this collection contains an item with the specified key.</summary>
+            <param name="key">The key of the item to test.</param>
+            <returns>True if the item is found within the collection, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.SearchCollection`1.TryGetValue(System.String,`0@)">
+            <summary>Try to retrieve the item with the specified key from the collection.</summary>
+            <param name="key">The key of the item to retrieve.</param>
+            <param name="value">The item.</param>
+            <returns>True if the item is found within the collection, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.SearchCollection`1.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#String@T}}#GetEnumerator">
+            <summary>Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> of  
+            <see cref="T:System.Collections.Generic.KeyValuePair`2"/> for this collection.</summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/> of <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.</returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.SearchCollection`1.Count">
+            <summary>Get a count of the number of in this collection.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.SearchCollection`1.Item(System.Int32)">
+            <summary>Get the item at the specified index.</summary>
+            <param name="index">The index of the item to retrieve.</param>
+            <returns>The item at the specified index.</returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.SearchCollection`1.Keys">
+            <summary>Get an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of the keys in this collection.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.SearchCollection`1.Values">
+            <summary>Get an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of the values in this collection.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.SearchCollection`1.Item(System.String)">
+            <summary>Get the item with the specified key.</summary>
+            <param name="key">The key of the item to retrieve.</param>
+            <returns>The item with the specified key.</returns>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.Highlight">
+            <summary>
+            Class that wraps a single highlight result from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.ToString">
+            <summary>
+            Return a string that represents the current <see cref="T:CrownPeak.SearchG2.Result.Highlight"/>.
+            </summary>
+            <returns><see cref="T:System.String"/> prefixed, separated and suffixed by the <see cref="P:CrownPeak.SearchG2.Result.Highlight.Separator"/>.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.Join(System.String,System.String,System.String)">
+            <summary>
+            Join the multiple values together with a specified prefix, separator and suffix.
+            </summary>
+            <param name="separator">The separator to use between values.</param>
+            <param name="prefix">The prefix to use before the first value.</param>
+            <param name="suffix">The suffix to use after the last value.</param>
+            <returns><see cref="T:System.String"/> prefixed, separated and suffixed as required.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.Add(System.String)">
+            <summary>
+            Add the <see cref="T:System.String"/> to the collection.
+            </summary>
+            <param name="item"><see cref="T:System.String"/> to add to the collection.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.Clear">
+            <summary>
+            Remove all values from this collection
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.Contains(System.String)">
+            <summary>
+            Test if the item is contained in the collection.
+            </summary>
+            <param name="item"><see cref="T:System.String"/> to be tested.</param>
+            <returns>True if item is contained in the collection, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.CopyTo(System.String[],System.Int32)">
+            <summary>
+            Copy the contents of the collection to the specified one-dimensional array, starting at the specified index.
+            </summary>
+            <param name="array">The destination array.</param>
+            <param name="arrayIndex">The index at which to start copying.</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.Remove(System.String)">
+            <summary>
+            Remove the specified item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns>True if the item is removed, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for the current collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.Highlight.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.IEnumerator"/> for the current collection.
+            </summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Highlight.Separator">
+            <summary>The separator of to use between each of multiple values.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Highlight.Count">
+            <summary>
+            Get the count of items in the collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Highlight.IsReadOnly">
+            <summary>
+            Get whether this collection is read-only.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.HighlightCollection">
+            <summary>
+            Class that wraps a collection of <see cref="T:CrownPeak.SearchG2.Result.Highlight"/> results from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or
+            <see cref="T:CrownPeak.SearchG2.Search`1"/> on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.IResult">
+            <summary>
+            Interface to describe a single result from a <see cref="T:CrownPeak.SearchG2.Search`1"/> 
+            operation.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResult.Ordinal">
+            <summary>The ordinal (index) of this item within the full set of results.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResult.Id">
+            <summary>The unique id of this result.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResult.Score">
+            <summary>The score of this result. Will be populated in results, but is optional for update.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResult.NormalizedScore">
+            <summary>
+            The score of this result, normalized so that the highest score in any result will
+            always result in a normalized score of 1.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResult.Highlights">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Highlight"/> objects for this result.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.IResultCollection`1">
+            <summary>
+            Interface to describe a collection of results from a 
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a 
+            <see cref="T:CrownPeak.SearchG2.Search`1"/> operation.
+            </summary>
+            <typeparam name="T">The type of results that we wish to hold in this collection.</typeparam>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResultCollection`1.TotalCount">
+            <summary>The total number of results that match this query.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResultCollection`1.TimeTaken">
+            <summary>The time taken (in ms) for the operation to execute.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResultCollection`1.MaxScore">
+            <summary>The maximum score for any of the results.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResultCollection`1.Facets">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Facet"/> objects that are available.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResultCollection`1.Suggestions">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Suggestion"/> objects that are available.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.IResultCollection`1.CrownPeak">
+            <summary>Results that are specific to CrownPeak</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.PlainResult">
+            <summary>
+            Class that wraps a single filter query operation when executing a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> operation on a 
+            CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.PlainResult.ContainsKey(System.String)">
+            <summary>
+            Test whether the collection contains a <see cref="T:CrownPeak.SearchG2.Result.IField"/> with the specified key.
+            </summary>
+            <param name="key">The key to check.</param>
+            <returns>True if a <see cref="T:CrownPeak.SearchG2.Result.IField"/> with the key is found, or false if not.</returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.PlainResult.GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerator`1"/> for the current collection.
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Result.PlainResult.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get an <see cref="T:System.Collections.IEnumerator"/> for the current collection.
+            </summary>
+            <returns><see cref="T:System.Collections.IEnumerator"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Id">
+            <summary>The unique id of this result.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Fields">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Field"/> objects that are in this result.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Highlights">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Highlight"/> objects that apply to this result.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Keys">
+            <summary>Get the collection of keys (field names) in this result.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Item(System.Int32)">
+            <summary>Get the <see cref="T:CrownPeak.SearchG2.Result.IField"/> from the collection by its index.</summary>
+            <param name="index">The index of the item to retrieve.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.IField"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Item(System.String)">
+            <summary>Get the <see cref="T:CrownPeak.SearchG2.Result.IField"/> from the collection by its name.</summary>
+            <param name="key">The name of the item to retrieve.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.IField"/></returns>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResult.Count">
+            <summary>
+            Get the count of the number of <see cref="T:CrownPeak.SearchG2.Result.IField"/> objects in this collection.
+            </summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.PlainResultCollection">
+            <summary>
+            Class that wraps a collection of <see cref="T:CrownPeak.SearchG2.Result.PlainResult"/> from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.Start">
+            <summary>The starting ordinal for the collection of <see cref="T:CrownPeak.SearchG2.Result.IResult"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.TotalCount">
+            <summary>The total number of results that match this query.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.TimeTaken">
+            <summary>The time taken (in ms) for the operation to execute.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.MaxScore">
+            <summary>The maximum score for any of the results.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.Suggestions">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Suggestion"/> objects that are available.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.Facets">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Facet"/> objects that are available.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.PlainResultCollection.CrownPeak">
+            <summary>Results that are specific to CrownPeak.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.ResultBase">
+            <summary>
+            Provide a base implentation of the <see cref="T:CrownPeak.SearchG2.Result.IResult"/> interface. When using
+            <see cref="T:CrownPeak.SearchG2.Search`1"/> you should inherit from this
+            class and provide your new class to the search.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultBase.Id">
+            <summary>The unique id of this <see cref="T:CrownPeak.SearchG2.Result.IResult"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultBase.Score">
+            <summary>The score of this <see cref="T:CrownPeak.SearchG2.Result.IResult"/>. Will be populated in results, but is optional for update.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultBase.Ordinal">
+            <summary>The ordinal (index) of this <see cref="T:CrownPeak.SearchG2.Result.IResult"/> within the full set of results.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultBase.NormalizedScore">
+            <summary>
+            The score of this <see cref="T:CrownPeak.SearchG2.Result.IResult"/>, normalized so that the highest score in any 
+            <see cref="T:CrownPeak.SearchG2.Result.ResultCollection`1"/> will always result in a normalized score of 1.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultBase.Highlights">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Highlight"/> objects for this result.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.ResultCollection`1">
+            <summary>
+            Class that wraps a collection of <see cref="T:CrownPeak.SearchG2.Result.IResult"/> objects from a
+            <see cref="T:CrownPeak.SearchG2.Search`1"/> on a CrownPeak SearchG2 collection.
+            </summary>
+            <typeparam name="T">The type of result for this collection. Must inherit from
+            <see cref="T:CrownPeak.SearchG2.Result.ResultBase"/>.</typeparam>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.Start">
+            <summary>The starting ordinal for the collection of <see cref="T:CrownPeak.SearchG2.Result.IResult"/>.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.TotalCount">
+            <summary>The total number of results that match this query.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.TimeTaken">
+            <summary>The time taken (in ms) for the operation to execute.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.MaxScore">
+            <summary>The maximum score for any of the results.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.Suggestions">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Suggestion"/> objects that are available.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.Facets">
+            <summary>Collection of <see cref="T:CrownPeak.SearchG2.Result.Facet"/> objects that are available.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.ResultCollection`1.CrownPeak">
+            <summary>Results that are specific to CrownPeak.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.Suggestion">
+            <summary>
+            Class that wraps a single result suggestion from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Suggestion.Query">
+            <summary>The query to which this suggestion refers.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Suggestion.StartOffset">
+            <summary>The starting offset of this query within the overall query string.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Suggestion.EndOffset">
+            <summary>The ending offset of this query within the overall query string.</summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.Suggestion.Options">
+            <summary>Array of options that this suggestion provides.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Result.SuggestionCollection">
+            <summary>
+            Class that wraps a collection of <see cref="T:CrownPeak.SearchG2.Result.Suggestion"/> results from a
+            <see cref="T:CrownPeak.SearchG2.PlainSearch"/> or a <see cref="T:CrownPeak.SearchG2.Search`1"/>
+            on a CrownPeak SearchG2 collection.
+            </summary>
+        </member>
+        <member name="P:CrownPeak.SearchG2.Result.SuggestionCollection.Collation">
+            <summary>The collation for this suggestion.</summary>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Search`1">
+            <summary>
+            <para>Class to support a search on the CrownPeak SearchG2 infrastructure, 
+            using a specified type to contain each result.</para>
+            <seealso cref="T:CrownPeak.SearchG2.PlainSearch"/>
+            </summary>
+            <typeparam name="T">The type you wish to use for each result. T must inherit from
+            <see cref="T:CrownPeak.SearchG2.Result.ResultBase"/>.</typeparam>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Search`1.#ctor(CrownPeak.SearchG2.Common.Settings)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Search`1"/> object with the specified settings
+            </summary>
+            <param name="settings">The <see cref="T:CrownPeak.SearchG2.Common.Settings"/> to be used</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Search`1.Execute">
+            <summary>
+            Execute a search that returns all of the results in the specified collection.
+            </summary>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.ResultCollection`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Search`1.Execute(System.String)">
+            <summary>
+            Execute a search that returns the results that match the specified query text,
+            using a default set of query options.
+            </summary>
+            <param name="q">The query string to execute. See 
+            <see href="https://wiki.apache.org/solr/SolrQuerySyntax"/>.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.ResultCollection`1"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Search`1.Execute(System.String,CrownPeak.SearchG2.Query.QueryOptions)">
+            <summary>
+            Execute a search that returns the results that match the specified query text,
+            using a specified set of <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/>
+            </summary>
+            <param name="q">The query string to execute. See 
+            <see href="https://wiki.apache.org/solr/SolrQuerySyntax"/>.</param>
+            <param name="options">The <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/> to use for this query.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.ResultCollection`1"/></returns>
+        </member>
+        <member name="T:CrownPeak.SearchG2.Suggest">
+            <summary>
+            Class to support a Suggest search on the CrownPeak SearchG2 infrastructure
+            </summary>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Suggest.#ctor(CrownPeak.SearchG2.Common.Settings)">
+            <summary>
+            Create a new <see cref="T:CrownPeak.SearchG2.Suggest"/> object with the specified settings
+            </summary>
+            <param name="settings">The <see cref="T:CrownPeak.SearchG2.Common.Settings"/> to be used</param>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Suggest.Execute(System.String)">
+            <summary>
+            Execute a Suggest search that returns the results that start with the specified query text,
+            using a default set of query options.
+            </summary>
+            <param name="q">The query string to execute. See 
+            <see href="https://wiki.apache.org/solr/SolrQuerySyntax"/>.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.SuggestionCollection"/></returns>
+        </member>
+        <member name="M:CrownPeak.SearchG2.Suggest.Execute(System.String,CrownPeak.SearchG2.Query.QueryOptions)">
+            <summary>
+            Execute a Suggest search that returns the results that start the specified query text,
+            using a specified set of <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/>
+            </summary>
+            <param name="q">The query string to execute. See 
+            <see href="https://wiki.apache.org/solr/SolrQuerySyntax"/>.</param>
+            <param name="options">The <see cref="T:CrownPeak.SearchG2.Query.QueryOptions"/> to use for this query.</param>
+            <returns><see cref="T:CrownPeak.SearchG2.Result.SuggestionCollection"/></returns>
+        </member>
+    </members>
+</doc>

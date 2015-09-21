@@ -1,0 +1,17 @@
+﻿@using CrownPeak.SearchG2.Client.Models
+@using CrownPeak.SearchG2.Query
+@model FilterQueryCollection
+
+@if (Model != null && Model.Count > 0)
+{
+	@Html.Raw("<div class=\"filters\">Active filters:<br />");
+	foreach (var fq in Model)
+	{
+		@Html.Raw(fq.Field + ": " + fq.Value + " ");
+		@Html.ActionLink("X", "Search", new Query { QueryText = ViewBag.Query, Page = ViewBag.Page, LoggingId = ViewBag.LoggingId, FilterQueries = Model.Where(f => f.Field != fq.Field || f.Value != fq.Value).ToString() });
+		@Html.Raw(" ");
+	}
+	@Html.Raw(" (");
+	@Html.ActionLink("Remove All", "Search", new Query { QueryText = ViewBag.Query, Page = ViewBag.Page, LoggingId = ViewBag.LoggingId });
+	@Html.Raw(")</div>");
+}

@@ -1,0 +1,36 @@
+﻿@model CrownPeak.SearchG2.Client.Models.SearchResult
+
+<div class="result">
+	<h4>
+		@Html.Partial("Stars", Model.NormalizedScore)
+		@(Model.Ordinal + 1).
+		@if (Model.Highlights.ContainsKey("title"))
+		{
+			@Html.Raw(Model.Highlights["title"].Join(""))
+		}
+		else
+		{
+			@(Model.Title ?? "[Untitled]")
+		}
+	</h4>
+	<p>
+		@if (Model.Highlights.ContainsKey("content"))
+		{
+			@Html.Raw(Model.Highlights["content"].Join(" ... ", "... ", " ..."))
+		}
+		else
+		{
+			@(Model.Content.Length > 300 ? Model.Content.Substring(0, 297) + "..." : Model.Content)
+		}
+	</p>
+	@if (Model.Highlights.ContainsKey("url"))
+	{
+		<a href="@Model.Url">@Html.Raw(Model.Highlights["url"].Join(""))</a>
+	}
+	else
+	{
+		<a href="@Model.Url">@Model.Url</a>
+	}
+</div>
+
+

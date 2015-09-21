@@ -1,0 +1,48 @@
+﻿@using CrownPeak.SearchG2.Query
+@using CrownPeak.SearchG2.Client.Models
+@model CrownPeak.SearchG2.Result.ResultCollection<CrownPeak.SearchG2.Client.Models.SearchResult>
+
+@{
+	ViewBag.Title = "Search";
+}
+
+@Html.Partial("Index", new Query())
+
+@if (Model.Count == 0)
+{
+	<p>Sorry, no results found for <b>@ViewBag.Query</b></p>
+}
+
+@if (!ViewBag.HideSuggestions && !string.IsNullOrWhiteSpace(Model.Suggestions.Collation))
+{
+	<p>
+		Did you mean:
+		@Html.ActionLink(@Model.Suggestions.Collation, "Search", new Query {QueryText = @Model.Suggestions.Collation, Page = 1, HideSuggestions = true})
+	</p>
+}
+
+@if (Model.Count > 0)
+{
+	<p>
+		Showing search results for:
+		"@ViewBag.Query"
+	</p>
+	<p>
+		Your search term produced @Model.TotalCount results.
+		Results @(Model.Start + 1) to @(Model.Start + Model.Count) are displayed.
+	</p>
+
+	if (ViewBag.Pager != null)
+	{ 
+		@Html.Partial("Pager", ViewBag.Pager as IEnumerable<int>);
+	}
+
+	@Html.Partial("Filters", ViewBag.FilterQueryCollection as FilterQueryCollection);
+
+	@Html.Partial("Facets", Model.Facets);
+}
+
+@foreach (SearchResult item in (IEnumerable<SearchResult>)Model)
+{
+	@Html.Partial("SearchResult", item)
+}

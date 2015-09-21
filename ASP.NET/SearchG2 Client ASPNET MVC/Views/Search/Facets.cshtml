@@ -1,0 +1,29 @@
+﻿@using CrownPeak.SearchG2.Query
+@using CrownPeak.SearchG2.Result
+@using CrownPeak.SearchG2.Client.Models
+@model FacetCollection
+
+@if (Model != null && Model.Count > 0)
+{
+	@Html.Raw("<div class=\"facets\">Facets:<br />")
+	foreach (var facet in @Model)
+	{
+		@Html.Raw(facet.Key + ": ")
+		bool firstValue = true;
+		foreach (var value in facet.Values)
+		{
+			if (firstValue)
+			{
+				firstValue = false;
+			}
+			else
+			{
+				@Html.Raw(", ")
+			}
+			@Html.ActionLink(value.Value, "Search", new Query { QueryText = ViewBag.Query, Page = 1, LoggingId = ViewBag.LoggingId, FilterQueries = (((FilterQueryCollection)ViewBag.FilterQueryCollection)).ToString() + ";" + value.Key + ":" + value.Value })
+			@Html.Raw(" (" + value.Count + ")")
+		}
+		@Html.Raw("<br/>")
+	}
+	@Html.Raw("</div>")
+}

@@ -1,0 +1,6 @@
+﻿@model double 
+<div class="stars-bg" title="@(Math.Round(@Model * 50) / 10 + " stars out of 5")">
+	<div class="stars-bar" style="width: @((Model * 80) + "px")">
+		<div class="stars"></div>
+	</div>
+</div>
