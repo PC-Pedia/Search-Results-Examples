@@ -15,15 +15,32 @@
 // WILL ANY COPYRIGHT HOLDER, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE 
 // (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER PROGRAMS),
 // EVEN IF SUCH HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-// Version: 0.1.0
+// Version: 0.2.0
 */
 
 var CrownPeakSearch = function () {
 
 	var self = this;
 
+	var protocol = location.protocol == "file:" ? "http:" : location.protocol;
 	// Default configuration for properties
-	var url = "http://searchg2.crownpeak.net/%%COLLECTION%%/%%HANDLER%%/";
+	/* Search proxy allows all queries to be sent via a proxy url - for security reasons
+	 * Search proxy supports the following macros
+	 * %%PROTOCOL%% - "https:" if this script was loaded via https, or "http:" if not
+	 * %%COLLECTION%% - the collection being requested
+	 * %%HANDLER%% - the handler being used
+	 * %%URL%% - the entire url for the search
+	 * %%URLENCODED%% - the entire url for the search, URI encoded
+	 * Leave the proxy blank (or null, or undefined, etc.) if you don't want to use one
+	 */
+	var _searchProxy = "";
+	/* Endpoint supports the following macros
+	 * %%PROTOCOL%% - "https:" if this script was loaded via https, or "http:" if not
+	 * %%COLLECTION%% - the collection being requested
+	 * %%HANDLER%% - the handler being used
+	 * %%QUERY%% - the querystring extension (do not include the "?")
+	 */
+	var _endpoint = "%%PROTOCOL%%//searchg2.crownpeak.net/%%COLLECTION%%/%%HANDLER%%?%%QUERY%%";
 	var _maxRows = 200; // Don't let the user specify more than this number of results
 	var _rows = 10;
 	var _collection = "www.crownpeak.com";
@@ -41,7 +58,7 @@ var CrownPeakSearch = function () {
 	var _timeout = 5000;
 
 	// Fill for missing console.log for oldIE
-	if (typeof console === "undefined") console = { log: function() { } }
+	if (typeof console === "undefined") console = { log: function() {} };
 	else if (!console.log) { console.log = function () { }; }
 
 	/// <summary>
@@ -122,7 +139,7 @@ var CrownPeakSearch = function () {
 				}
 				data.suggestions = results;
 			}
-		};
+		}
 	}
 
 	/// <summary>
@@ -215,6 +232,28 @@ var CrownPeakSearch = function () {
 	}
 
 	/// <summary>
+	/// Get the full url to be used to execute a query against Search G2
+	/// </summary>
+	function getSearchUrl(collection, handler, query) {
+		var url = _endpoint
+			.replace(/%%PROTOCOL%%/ig, protocol)
+			.replace(/%%COLLECTION%%/ig, _collection)
+			.replace(/%%HANDLER%%/ig, handler)
+			.replace(/%%QUERY%%/ig, query);
+
+		if (_searchProxy && _searchProxy.replace) {
+			return _searchProxy
+				.replace(/%%PROTOCOL%%/ig, protocol)
+				.replace(/%%COLLECTION%%/ig, _collection)
+				.replace(/%%HANDLER%%/ig, handler)
+				.replace(/%%URL%%/ig, url)
+				.replace(/%%URLENCODED%%/ig, encodeURIComponent(url));
+		}
+
+		return url;
+	}
+
+	/// <summary>
 	/// Execute the provided query against the configured url and collection
 	/// </summary>
 	function internalRawQuery(query, handler) {
@@ -223,13 +262,12 @@ var CrownPeakSearch = function () {
 
 		handler = handler || _handler || "select";
 
-		var thisUrl = url.replace(/%%COLLECTION%%/, _collection)
-			.replace(/%%HANDLER%%/, handler);
+		var thisUrl = getSearchUrl(_collection, handler, query);
 
-		console.log("Querying " + thisUrl + "?" + query);
+		console.log("Querying " + thisUrl);
 
 		// Make a JSONP request to our Solr collection
-		getUrl(thisUrl + "?" + query, _timeout)
+		getUrl(thisUrl, _timeout)
 			.done(function(data) {
 				if (_highlight && data.highlighting) {
 					copyHighlights(data);
@@ -270,15 +308,72 @@ var CrownPeakSearch = function () {
 			+ "&wt=json&start=" + page * _rows + "&rows=" + Math.min(_rows, _maxRows)
 			+ (_language !== "" ? "&fq=language:" + _language : "")
 			+ (_spellcheck ? "&spellcheck=true&spellcheck.collate=true&spellcheck.collateExtendedResults=true" : "")
-			+ (filterQueries.length > 0 ? "&fq=" + filterQueries.join("&fq=") : "")
+			+ (filterQueries && filterQueries.length > 0 ? "&fq=" + filterQueries.join("&fq=") : "")
 			+ (_facets.length > 0 ? "&facet=true&facet.mincount=1&facet.field=" + _facets.join("&facet.field=") : "")
 			+ (_facets.length > 0 && _maxFacets > 0 ? "&facet.limit=" + _maxFacets : "")
 			+ (_sort.length > 0 ? "&sort=" + _sort.join(",") : "")
 			+ (_highlight ? "&hl=true&hl.fl=*&hl.snippets=3&hl.simple.pre=" + escape("<b>") + "&hl.simple.post=" + escape("</b>") + "&f.title.hl.fragsize=50000&f.url.hl.fragsize=50000" : "")
-			+ (_params ? "&" + _params.replace(/^[&]/, "") : "");
+			+ "&json.wrf=%%CALLBACK%%";
+
+		// If they provided additional parameters, merge them into our set
+		if (_params) data = mergeParameters(data, _params.replace(/^[&]/, ""));
 
 		return internalRawQuery(data);
 	}
+
+	/// <summary>
+	/// Merge together two sets of parameters and return the result, with s2 taking precendence
+	/// </summary>
+	function mergeParameters(s1, s2) {
+		var PARAMS_TO_IGNORE = ",fl,fq,hl.fl,"; // NOTE: keep the leading/trailing commas
+		var result = [];
+
+		// Immediate exit conditions
+		if (!s1) return s2;
+		if (!s2) return s1;
+
+		var s1Items = s1.split("&"), s2Items = s2.split("&");
+
+		for (var i = 0, len = s1Items.length; i < len; i++) {
+			var item = s1Items[i].split("=");
+			var key = item[0], value = item[1];
+			// Is this in string 2?
+			var s2Index = indexOfKey(s2Items, key);
+			if (s2Index >= 0) {
+				// Yes, so process it
+				var item2 = s2Items[s2Index].split("=");
+				var key2 = item2[0], value2 = item2[1];
+				if (PARAMS_TO_IGNORE.indexOf("," + key + ",") >= 0) {
+					// push key 1
+					result.push(key + "=" + value);
+				}
+				// Push key 2
+				result.push(key2 + "=" + value2);
+				// Remove this item from string 2
+				s2Items.splice(s2Index, 1);
+			} else {
+				// No, so just append it
+				result.push(key + "=" + value);
+			}
+		}
+
+		// Append anything left in string 2
+		result = result.concat(s2Items);
+
+		return result.join("&");
+	}
+
+	/// <summary>
+	/// Find the index of a key in an array of key=value pairs
+	/// </summary>
+	function indexOfKey(array, key) {
+		if (!array || !array.length) return -1;
+		for (var i = 0, len = array.length; i < len; i++) {
+			if (array[i].split("=")[0] === key) return i;
+		}
+		return -1;
+	}
+
 
 	/// <summary>
 	/// Build a suggest query using the text and execute it
@@ -340,7 +435,7 @@ var CrownPeakSearch = function () {
 			window[cb] = function (data) {
 				tidytimer();
 				deferred.resolve(data, url);
-			}
+			};
 
 			var script = document.createElement("script");
 
@@ -350,12 +445,12 @@ var CrownPeakSearch = function () {
 				if (event.type === "error") {
 					deferred.reject("error", url);
 				}
-			}
+			};
 
 			addEvent(script, "load", loadOrError);
 			addEvent(script, "error", loadOrError);
 
-			script.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "json.wrf=" + cb;
+			script.src = url.replace(/%%CALLBACK%%|%25%25CALLBACK%25%25/ig, cb);
 			document.getElementsByTagName("head")[0].appendChild(script);
 		} catch (e) {
 			deferred.reject(url, "error", e);
@@ -382,7 +477,7 @@ var CrownPeakSearch = function () {
 			promise: function () {
 				return {
 					status: function () {
-						return state;
+						return deferred.state;
 					},
 					done: function (fn) {
 						if (deferred.state == "resolved") {
@@ -408,7 +503,7 @@ var CrownPeakSearch = function () {
 						}
 						return this;
 					}
-				}
+				};
 			},
 			resolve: function () {
 				if (deferred.state === "pending") {
@@ -426,12 +521,14 @@ var CrownPeakSearch = function () {
 					trigger(deferred.alwaysList, arguments);
 				}
 			}
-		}
+		};
 	}
 
 	return {
 		// Getters and setters would be nice, but in the meantime...
 		rows: function (value) { if (value !== undefined) _rows = value; return _rows; },
+		searchProxy: function (value) { if (value !== undefined) _searchProxy = value; return _searchProxy; },
+		endpoint: function (value) { if (value !== undefined) _endpoint = value; return _endpoint; },
 		collection: function (value) { if (value !== undefined) _collection = value; return _collection; },
 		facets: function (value) { if (value !== undefined) _facets = (typeof value === "string" ? [value] : value); return _facets; },
 		maxFacets: function (value) { if (value !== undefined) _maxFacets = value; return _maxFacets; },
@@ -474,7 +571,7 @@ var CrownPeakSearch = function () {
 		raw: function (query) {
 			return internalRawQuery(query);
 		}
-	}
+	};
 }();
 
 // Old IE support
