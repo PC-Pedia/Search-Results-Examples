@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JavaScript", "http://localhost:60652", "{C462B90F-83E5-47C8-A8C1-BADEF9A7F5D6}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60652"
+		Debug.AspNetCompiler.PhysicalPath = "JavaScript\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60652\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60652"
+		Release.AspNetCompiler.PhysicalPath = "JavaScript\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60652\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "JavaScript\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "KnockoutJS", "http://localhost:60653", "{C9CB5DD8-1B09-4607-91D3-6AA32BEAC5CF}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60653"
+		Debug.AspNetCompiler.PhysicalPath = "KnockoutJS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60653\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60653"
+		Release.AspNetCompiler.PhysicalPath = "KnockoutJS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60653\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "KnockoutJS\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchG2 Client ASPNET", "ASP.NET\SearchG2 Client ASPNET\SearchG2 Client ASPNET.csproj", "{637C40E6-C527-4A01-A4B7-88AE94BDFD56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchG2 Client ASPNET MVC", "ASP.NET\SearchG2 Client ASPNET MVC\SearchG2 Client ASPNET MVC.csproj", "{BC5FDF5A-4432-49BD-ADDB-56B4D8FEF29C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C462B90F-83E5-47C8-A8C1-BADEF9A7F5D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C462B90F-83E5-47C8-A8C1-BADEF9A7F5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C462B90F-83E5-47C8-A8C1-BADEF9A7F5D6}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C462B90F-83E5-47C8-A8C1-BADEF9A7F5D6}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{C9CB5DD8-1B09-4607-91D3-6AA32BEAC5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CB5DD8-1B09-4607-91D3-6AA32BEAC5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CB5DD8-1B09-4607-91D3-6AA32BEAC5CF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CB5DD8-1B09-4607-91D3-6AA32BEAC5CF}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{637C40E6-C527-4A01-A4B7-88AE94BDFD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637C40E6-C527-4A01-A4B7-88AE94BDFD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637C40E6-C527-4A01-A4B7-88AE94BDFD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637C40E6-C527-4A01-A4B7-88AE94BDFD56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC5FDF5A-4432-49BD-ADDB-56B4D8FEF29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5FDF5A-4432-49BD-ADDB-56B4D8FEF29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC5FDF5A-4432-49BD-ADDB-56B4D8FEF29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5FDF5A-4432-49BD-ADDB-56B4D8FEF29C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
